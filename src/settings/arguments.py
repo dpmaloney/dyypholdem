@@ -9,15 +9,15 @@ import utils.output as output
 
 """Section Data Management and Paths"""
 # the directory for data files
-data_directory = '../data/'
+data_directory = 'C:/Users/dmalo/Documents/GitHub/dyypholdem/data/'
 # folders for data per street
 street_folders = {0: "preflop-aux", 1: "preflop/", 2: "flop/", 3: "turn/", 4: "river/"}
 # names of streets for printing
 street_names = {1: "Pre-flop", 2: "Flop", 3: "Turn", 4: "River"}
 # path to the solved poker situation data used to train the neural net
-training_data_path = '../../data/training_samples/'
+training_data_path = 'C:/Users/dmalo/Documents/GitHub/dyypholdem/data/training_samples/'
 # path to the models during training
-training_model_path = '../../data/models/'
+training_model_path = 'C:/Users/dmalo/Documents/GitHub/dyypholdem/data/models/'
 # folder for raw training files
 training_data_raw = 'raw/'
 # folder for converted / bucketed training files
@@ -27,7 +27,7 @@ inputs_extension = ".inputs"
 # file extension for targets files
 targets_extension = ".targets"
 # path to the neural net models
-model_path = '../data/models/'
+model_path = 'C:/Users/dmalo/Documents/GitHub/dyypholdem/data/models/'
 # the name of a neural net file
 value_net_name = 'final'
 # the extension of a neural net file
@@ -38,7 +38,7 @@ use_sqlite = True
 
 """Section CFR Iterations"""
 # the number of iterations that DyypHoldem runs CFR for
-cfr_iters = 1000
+cfr_iters = 800
 # the number of preliminary CFR iterations which DyypHoldem doesn't factor into the average strategy (included in cfr_iters)
 cfr_skip_iters = 500
 
@@ -47,12 +47,12 @@ cfr_skip_iters = 500
 # how many poker situations are solved simultaneously during data generation
 gen_batch_size = 10
 # how many solved poker situations are generated for use as training examples
-gen_data_count = 100000
+gen_data_count = 2000000
 
 
 """Section Training"""
 # how many poker situations are used in each neural net training batch - has to be a multiple of gen_batch_size !
-train_batch_size = 1000
+train_batch_size = 100
 # how many epochs to train for
 epoch_count = 200
 # how often to save the model during training
@@ -78,7 +78,7 @@ else:
     LongTensor = torch.cuda.LongTensor
     value_net_name = value_net_name + "_gpu"
     # flag to use new tensor cores on Ampere based GPUs - set to 'False' for reproducibility
-    torch.backends.cuda.matmul.allow_tf32 = False
+    torch.backends.cuda.matmul.allow_tf32 = True
 # device name for torch
 device = torch.device('cpu') if not use_gpu else torch.device('cuda')
 
